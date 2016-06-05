@@ -172,8 +172,8 @@ int main(void) {
 }
 
 void push(struct stack *s, char x) {
-    if (s->top == disks - 1) printf("nSTACK OVERFLOW");
-    else if (x == 0 || x == '0') printf("nNothing to push");
+    if (s->top == disks - 1) printf("\nSTACK OVERFLOW");
+    else if (x == 0 || x == '0') printf("\nNothing to push");
     else s->a[++s->top] = x;
 }
 
@@ -248,18 +248,27 @@ void save_state(peg *peg1, peg *peg2, peg *peg3, int *state) {
     int i;
     static int d = 0;
     if (peg1->top >= 0) {
-        for (i = 0; i <= peg1->top; i++) { *push_state(state, pointer, 0) = d; //state
-            *push_state(state, pointer, 1) = 1; //peg
-            *push_state(state, pointer, 2) = peg1->a[i]; //disk
-            *push_state(state, pointer++, 3) = i; //floor
+        for (i = 0; i <= peg1->top; i++) { 
+        	*push_state(state, pointer, 0) = d; //state
+        	*push_state(state, pointer, 1) = 1; //peg
+        	*push_state(state, pointer, 2) = peg1->a[i]; //disk
+        	*push_state(state, pointer++, 3) = i; //floor
         }
     }
     if (peg2->top >= 0) {
-        for (i = 0; i <= peg2->top; i++) { *push_state(state, pointer, 0) = d; *push_state(state, pointer, 1) = 2; *push_state(state, pointer, 2) = peg2->a[i]; *push_state(state, pointer++, 3) = i;
+        for (i = 0; i <= peg2->top; i++) { 
+        	*push_state(state, pointer, 0) = d; 
+        	*push_state(state, pointer, 1) = 2; 
+        	*push_state(state, pointer, 2) = peg2->a[i]; 
+        	*push_state(state, pointer++, 3) = i;
         }
     }
     if (peg3->top >= 0) {
-        for (i = 0; i <= peg3->top; i++) { *push_state(state, pointer, 0) = d; *push_state(state, pointer, 1) = 3; *push_state(state, pointer, 2) = peg3->a[i]; *push_state(state, pointer++, 3) = i;
+        for (i = 0; i <= peg3->top; i++) { 
+        	*push_state(state, pointer, 0) = d; 
+        	*push_state(state, pointer, 1) = 3; 
+        	*push_state(state, pointer, 2) = peg3->a[i]; 
+        	*push_state(state, pointer++, 3) = i;
         }
     }
     d++;
